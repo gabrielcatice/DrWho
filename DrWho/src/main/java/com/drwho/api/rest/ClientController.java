@@ -35,5 +35,37 @@ public class ClientController extends AbstractRestHandler {
         response.setHeader("Location", request.getRequestURL().append("/").append(createdClient.getId()).toString());
     }
 
+    //retrieve all the clients
+    @RequestMapping(value = "",
+            method = RequestMethod.GET,
+            produces = {"application/json", "application/xml"})
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Get a paginated list of all clients", notes = "The list is paginated. You can provide a page number (default 0) and a page size (default 100)")
+    public
+    @ResponseBody
+    Page<Client> getAllClient(@ApiParam(value = "The page number (zero-based)", required = true)
+                              @RequestParam(value = "page", required = true, defaultValue = DEFAULT_PAGE_NUM) Integer page,
+                              @ApiParam(value = "The page size", required = true)
+                              @RequestParam(value = "size", required = true, defaultValue = DEFAULT_PAGE_SIZE) Integer size,
+                              HttpServletRequest request, HttpServletResponse response) {
+        return this.clientService.getAllClients(page, size);
+
+    }
+
+    //retrieve a specific client
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.GET,
+            produces = {"application/json", "application/xml"})
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Get a single client.", notes = "You have to provide a valid hotel ID.")
+    public
+    @ResponseBody
+    Client getClient(@ApiParam(value = "The ID of the client.", required = true)
+                     @PathVariable("id") Long id,
+                     HttpServletRequest request, HttpServletResponse response) throws Exception{
+        Client client = this.clientService.getClient(id);
+        checkResourceFound(client);
+        return client;
+    }
 }
 
