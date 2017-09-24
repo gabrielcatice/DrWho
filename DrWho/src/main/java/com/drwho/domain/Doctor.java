@@ -31,6 +31,8 @@ public class Doctor {
     @Column(nullable = false)
     private String specialization;
 
+    @OneToOne
+    private AppointmentBook appointmentBook;
 
     public Doctor(){ }
 
@@ -110,7 +112,7 @@ public class Doctor {
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNmber='" + phoneNumber + '\'' +
-                ", adreess='" + address +
+                ", adreess='" + address + '\'' +
                 ", specialization='" + specialization + '\'' +
                 '}';
     }
