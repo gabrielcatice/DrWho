@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping(value = "v1/doctors")
+@RequestMapping(value = "/v1/doctors")
 @Api(value = "doctors", description = "DrWho API")
 public class DoctorController extends AbstractRestHandler {
 

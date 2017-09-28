@@ -22,7 +22,7 @@ public class Doctor {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String phoneNumber;
 
     @Column(nullable = false)
@@ -111,8 +111,8 @@ public class Doctor {
                 ", name='" + name + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
-                ", phoneNmber='" + phoneNumber + '\'' +
-                ", adreess='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
                 ", specialization='" + specialization + '\'' +
                 '}';
     }

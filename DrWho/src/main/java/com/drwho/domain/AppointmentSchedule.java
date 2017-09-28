@@ -21,8 +21,8 @@ public class AppointmentSchedule {
     @OneToOne
     private Doctor doctor;
 
-    @Temporal(value = TemporalType.TIME)
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @Temporal(value = TemporalType.DATE)
+
     private Date dateSchedule;
 
     public AppointmentSchedule(Client client, Doctor doctor, Date dateSchedule) {
@@ -72,8 +72,8 @@ public class AppointmentSchedule {
     public String toString(){
         return "Appointment Schedule {" +
                 "id=" + id +
-                "client{" + client + '\'' +
-                "doctor{" + doctor + '\'' +
+                "client" + client + '\'' +
+                "doctor" + doctor + '\'' +
                 "dateSchedule" + dateSchedule + '\'' +
                 '}';
     }

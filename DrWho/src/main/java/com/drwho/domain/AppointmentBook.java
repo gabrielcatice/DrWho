@@ -86,6 +86,7 @@ public class AppointmentBook {
                 ", DayOfWeek='" + dayOfWeek + '\'' +
                 ", StartTime='" + startTime + '\'' +
                 ", EndTime='" + endTime + '\'' +
+                ", Doctor='" + doctor + '\'' +
                 '}';
     }
 }
