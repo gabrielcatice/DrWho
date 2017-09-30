@@ -1,6 +1,8 @@
+
 package com.drwho.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.util.Date;
@@ -19,21 +21,19 @@ public class AppointmentBook {
     @Column(nullable = false)
     private String dayOfWeek;
 
-    //Não sei o motivo de quando vc adiciona a hora, ela enntra com 3 hrs a menos, tipo vc da um POST com "19:00" no banco ele guarda "16:00"
     @Temporal(value = TemporalType.TIME)
     @JsonFormat(pattern = "HH:mm")
     private Date startTime;
 
-    //Aqui também
     @Temporal(value = TemporalType.TIME)
     @JsonFormat(pattern = "HH:mm")
     private Date endTime;
 
     @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Doctor doctor;
 
-    public AppointmentBook() {
-    }
+    public AppointmentBook() { }
 
     public AppointmentBook(String dayOfWeek, Date startTime, Date endTime) {
         setDayOfWeek(dayOfWeek);
@@ -90,4 +90,3 @@ public class AppointmentBook {
                 '}';
     }
 }
-

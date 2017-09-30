@@ -1,7 +1,6 @@
 package com.drwho.api.rest;
 
 import com.drwho.domain.AppointmentBook;
-import com.drwho.exception.DataFormatException;
 import com.drwho.service.AppointmentBookService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;

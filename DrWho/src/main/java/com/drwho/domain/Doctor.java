@@ -1,26 +1,22 @@
+
 package com.drwho.domain;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "idUser")
 @Table(name = "doctor")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 
-public class Doctor {
-    @Id
-    @GeneratedValue
-    private long id;
+public class Doctor extends Users{
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
     private String cpf;
-
-    @Column(nullable = false)
-    private String email;
 
     @Column
     private String phoneNumber;
@@ -31,15 +27,15 @@ public class Doctor {
     @Column(nullable = false)
     private String specialization;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private AppointmentBook appointmentBook;
 
     public Doctor(){ }
 
-    public Doctor(String name, String cpf, String email, String phoneNumber, String address, String specialization) {
+    public Doctor(String email, String senha, String name, String cpf, String phoneNumber, String address, String specialization) {
+        super(email, senha);
         setName(name);
         setCpf(cpf);
-        setEmail(email);
         setPhoneNumber(phoneNumber);
         setAddress(address);
         setSpecialization(specialization);
@@ -47,72 +43,34 @@ public class Doctor {
 
     //Getters and Setters
 
-    public long getId() {
-        return id;
-    }
+    public String getName() { return name; }
 
-    public String getName() {
-        return name;
-    }
+    public String getCpf() { return cpf; }
 
-    public String getCpf() {
-        return cpf;
-    }
+    public String getPhoneNumber() { return phoneNumber; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getAddress() { return address; }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+    public String getSpecialization() { return specialization; }
 
-    public String getAddress() {
-        return address;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public String getSpecialization() {
-        return specialization;
-    }
+    public void setCpf(String cpf) { this.cpf = cpf; }
 
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setAddress(String address) { this.address = address; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
+    public void setSpecialization(String specialization) { this.specialization = specialization; }
 
     @Override
     public String toString(){
         return "Doctor{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", cpf='" + cpf + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
+                ", phoneNmber='" + phoneNumber + '\'' +
+                ", adreess='" + address + '\'' +
                 ", specialization='" + specialization + '\'' +
                 '}';
     }

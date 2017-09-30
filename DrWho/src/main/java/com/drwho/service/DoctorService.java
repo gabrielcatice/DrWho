@@ -1,7 +1,7 @@
 package com.drwho.service;
 
-import com.drwho.dao.jpa.DoctorRepository;
 import com.drwho.domain.Doctor;
+import com.drwho.dao.jpa.DoctorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,18 @@ public class DoctorService {
 
     }
 
-    public Doctor createDoctor(Doctor doctor){
+    public  Doctor createDoctor(Doctor doctor){
         return doctorRepository.save(doctor);
     }
-    public Doctor getDoctor(long id) { return doctorRepository.findOne(id); }
+    public Doctor getDoctor(long id) {
+        return doctorRepository.findOne(id);
+    }
     public void updateDoctor(Doctor doctor){
         doctorRepository.save(doctor);
     }
-    public void deleteDoctor(Long id){ doctorRepository.delete(id); }
+    public void deleteDoctor(Long id){
+        doctorRepository.delete(id);
+    }
 
     public Page<Doctor> getAllDoctors(Integer page, Integer size){
         Page pageOfDoctors = doctorRepository.findAll(new PageRequest(page, size));

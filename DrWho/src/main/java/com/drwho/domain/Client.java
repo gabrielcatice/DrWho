@@ -4,15 +4,12 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "idUser")
 @Table(name = "client")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 
-public class Client {
-
-    @Id
-    @GeneratedValue()
-    private long id;
+public class Client extends Users{
 
     @Column(nullable = false)
     private String name;
@@ -21,33 +18,19 @@ public class Client {
     private String cpf;
 
     @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
     private String phoneNumber;
 
     @Column(nullable = false)
     private String address;
 
-    public Client(){
+    public Client(){ }
 
-    }
-
-    public Client(String name, String cpf, String email, String phoneNumber, String address){
-        this.setName(name);
-        this.setCpf(cpf);
-        this.setEmail(email);
-        this.setPhoneNumber(phoneNumber);
-        this.setAddress(address);
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public Client(String email, String senha, String name, String cpf, String phoneNumber, String address) {
+        super(email, senha);
+        this.name = name;
+        this.cpf = cpf;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     public String getName() {
@@ -64,14 +47,6 @@ public class Client {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPhoneNumber() {
@@ -93,10 +68,8 @@ public class Client {
     @Override
     public  String toString(){
         return  "Client {" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", cpf='" + cpf + '\'' +
-                ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address +
                 '}';
