@@ -69,4 +69,19 @@ public class DoctorController extends AbstractRestHandler {
         checkResourceFound(doctor);
         return doctor;
     }
+
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.PUT,
+            consumes = {"application/json", "application/xml"},
+            produces = {"application/json", "application/xml"})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Update a hotel resource.", notes = "You have to provide a valid hotel ID in the URL and in the payload. The ID attribute can not be updated.")
+    public void updateDoctor(@ApiParam(value = "The ID of the existing hotel resource.", required = true)
+                            @PathVariable("id") Long id, @RequestBody Doctor doctor,
+                            HttpServletRequest request, HttpServletResponse response) {
+        checkResourceFound(this.doctorService.getDoctor(id));
+
+        //if (id != doctor.getId()) throw new DataFormatException("ID doesn't match!");
+        this.doctorService.updateDoctor(doctor);
+    }
 }

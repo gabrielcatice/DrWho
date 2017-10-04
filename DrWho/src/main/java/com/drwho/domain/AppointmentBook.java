@@ -17,7 +17,25 @@ public class AppointmentBook {
     private long id;
 
     @Column(nullable = false)
-    private String dayOfWeek;
+    private boolean monday;
+
+    @Column(nullable = false)
+    private boolean tuesday;
+
+    @Column(nullable = false)
+    private boolean wednesday;
+
+    @Column(nullable = false)
+    private boolean thursday;
+
+    @Column(nullable = false)
+    private boolean friday;
+
+    @Column(nullable = false)
+    private boolean saturday;
+
+    @Column(nullable = false)
+    private boolean sunday;
 
     //Não sei o motivo de quando vc adiciona a hora, ela enntra com 3 hrs a menos, tipo vc da um POST com "19:00" no banco ele guarda "16:00"
     @Temporal(value = TemporalType.TIME)
@@ -29,16 +47,33 @@ public class AppointmentBook {
     @JsonFormat(pattern = "HH:mm")
     private Date endTime;
 
-    @OneToOne
+    @Temporal(value = TemporalType.TIME)
+    @JsonFormat(pattern = "HH:mm")
+    private Date breakStartTime;
+
+    @Temporal(value = TemporalType.TIME)
+    @JsonFormat(pattern = "HH:mm")
+    private Date breakEndTime;
+
+    @OneToOne(mappedBy="appointmentBook")
     private Doctor doctor;
 
     public AppointmentBook() {
     }
 
-    public AppointmentBook(String dayOfWeek, Date startTime, Date endTime) {
-        setDayOfWeek(dayOfWeek);
-        setStartTime(startTime);
-        setEndTime(endTime);
+    public AppointmentBook(boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, boolean saturday, boolean sunday, Date startTime, Date endTime, Date breakStartTime, Date breakEndTime/*, Doctor doctor*/) {
+        this.monday = monday;
+        this.tuesday = tuesday;
+        this.wednesday = wednesday;
+        this.thursday = thursday;
+        this.friday = friday;
+        this.saturday = saturday;
+        this.sunday = sunday;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.breakStartTime = breakStartTime;
+        this.breakEndTime = breakEndTime;
+        //this.doctor = doctor;
     }
 
     public long getId() {
@@ -49,15 +84,65 @@ public class AppointmentBook {
         this.id = id;
     }
 
-    public String getDayOfWeek() {
-        return dayOfWeek;
+    public boolean isMonday() {
+        return monday;
     }
 
-    public void setDayOfWeek(String dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
+    public void setMonday(boolean monday) {
+        this.monday = monday;
     }
 
-    public Date getStartTime() { return startTime; }
+    public boolean isTuesday() {
+        return tuesday;
+    }
+
+    public void setTuesday(boolean tuesday) {
+        this.tuesday = tuesday;
+    }
+
+    public boolean isWednesday() {
+        return wednesday;
+    }
+
+    public void setWednesday(boolean wednesday) {
+        this.wednesday = wednesday;
+    }
+
+    public boolean isThursday() {
+        return thursday;
+    }
+
+    public void setThursday(boolean thursday) {
+        this.thursday = thursday;
+    }
+
+    public boolean isFriday() {
+        return friday;
+    }
+
+    public void setFriday(boolean friday) {
+        this.friday = friday;
+    }
+
+    public boolean isSaturday() {
+        return saturday;
+    }
+
+    public void setSaturday(boolean saturday) {
+        this.saturday = saturday;
+    }
+
+    public boolean isSunday() {
+        return sunday;
+    }
+
+    public void setSunday(boolean sunday) {
+        this.sunday = sunday;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
 
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
@@ -71,23 +156,46 @@ public class AppointmentBook {
         this.endTime = endTime;
     }
 
-    public Doctor getDoctor() {
+    public Date getBreakStartTime() {
+        return breakStartTime;
+    }
+
+    public void setBreakStartTime(Date breakStartTime) {
+        this.breakStartTime = breakStartTime;
+    }
+
+    public Date getBreakEndTime() {
+        return breakEndTime;
+    }
+
+    public void setBreakEndTime(Date breakEndTime) {
+        this.breakEndTime = breakEndTime;
+    }
+
+    /*public Doctor getDoctor() {
         return doctor;
     }
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
-    }
+    }*/
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Appointment Book{" +
                 "id=" + id +
-                ", DayOfWeek='" + dayOfWeek + '\'' +
+                ", Monday='" + monday + '\'' +
+                ", Tuesday='" + tuesday + '\'' +
+                ", Wednesday='" + wednesday + '\'' +
+                ", Thursday='" + thursday + '\'' +
+                ", Friday='" + friday + '\'' +
+                ", Saturday='" + saturday + '\'' +
+                ", Sunday='" + sunday + '\'' +
+                ", BreakStartTime='" + breakStartTime + '\'' +
+                ", BreakEndTime='" + breakEndTime + '\'' +
                 ", StartTime='" + startTime + '\'' +
                 ", EndTime='" + endTime + '\'' +
-                ", Doctor='" + doctor + '\'' +
+                //", Doctor='" + doctor +
                 '}';
     }
 }
-

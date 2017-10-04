@@ -32,17 +32,19 @@ public class Doctor {
     private String specialization;
 
     @OneToOne
+    @JoinColumn(name="appointment_book_id")
     private AppointmentBook appointmentBook;
 
     public Doctor(){ }
 
-    public Doctor(String name, String cpf, String email, String phoneNumber, String address, String specialization) {
-        setName(name);
-        setCpf(cpf);
-        setEmail(email);
-        setPhoneNumber(phoneNumber);
-        setAddress(address);
-        setSpecialization(specialization);
+    public Doctor(String name, String cpf, String email, String phoneNumber, String address, String specialization, AppointmentBook appointmentBook) {
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.specialization = specialization;
+        this.appointmentBook = appointmentBook;
     }
 
     //Getters and Setters
@@ -104,6 +106,14 @@ public class Doctor {
         this.specialization = specialization;
     }
 
+    public AppointmentBook getAppointmentBook() {
+        return appointmentBook;
+    }
+
+    public void setAppointmentBook(AppointmentBook appointmentBook) {
+        this.appointmentBook = appointmentBook;
+    }
+
     @Override
     public String toString(){
         return "Doctor{" +
@@ -114,6 +124,7 @@ public class Doctor {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
                 ", specialization='" + specialization + '\'' +
+                ", appointmentBook='" + appointmentBook + '\'' +
                 '}';
     }
 

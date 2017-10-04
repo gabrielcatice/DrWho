@@ -30,9 +30,12 @@ public class AppointmentBookService {
     }
 
     public AppointmentBook createAppointmentBook(AppointmentBook appointmentBook){
+
+
         return appointmentBookRepository.save(appointmentBook);
     }
     public AppointmentBook getAppointmentBook(long id) { return appointmentBookRepository.findOne(id); }
+
     public void updateAppointmentBook(AppointmentBook appointmentBook){
         appointmentBookRepository.save(appointmentBook);
     }
