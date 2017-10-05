@@ -67,5 +67,21 @@ public class ClientController extends AbstractRestHandler {
         checkResourceFound(client);
         return client;
     }
+
+    //update a doctor
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.PUT,
+            consumes = {"application/json", "application/xml"},
+            produces = {"application/json", "application/xml"})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Update a hotel resource.", notes = "You have to provide a valid hotel ID in the URL and in the payload. The ID attribute can not be updated.")
+    public void updateUser(@ApiParam(value = "The ID of the existing hotel resource.", required = true)
+                             @PathVariable("id") Long id, @RequestBody Client client,
+                             HttpServletRequest request, HttpServletResponse response) {
+        checkResourceFound(this.clientService.getClient(id));
+
+        //if (id != doctor.getId()) throw new DataFormatException("ID doesn't match!");
+        this.clientService.updateClient(client);
+    }
 }
 

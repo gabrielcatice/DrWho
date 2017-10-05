@@ -58,10 +58,13 @@ public class AppointmentBook {
     @OneToOne(mappedBy="appointmentBook")
     private Doctor doctor;
 
+    @Column(columnDefinition = "default false")
+    private boolean isDeleted;
+
     public AppointmentBook() {
     }
 
-    public AppointmentBook(boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, boolean saturday, boolean sunday, Date startTime, Date endTime, Date breakStartTime, Date breakEndTime/*, Doctor doctor*/) {
+    public AppointmentBook(boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, boolean saturday, boolean sunday, Date startTime, Date endTime, Date breakStartTime, Date breakEndTime, boolean isDeleted/*, Doctor doctor*/) {
         this.monday = monday;
         this.tuesday = tuesday;
         this.wednesday = wednesday;
@@ -73,6 +76,7 @@ public class AppointmentBook {
         this.endTime = endTime;
         this.breakStartTime = breakStartTime;
         this.breakEndTime = breakEndTime;
+        this.isDeleted = isDeleted;
         //this.doctor = doctor;
     }
 
@@ -172,6 +176,14 @@ public class AppointmentBook {
         this.breakEndTime = breakEndTime;
     }
 
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
     /*public Doctor getDoctor() {
         return doctor;
     }
@@ -195,6 +207,7 @@ public class AppointmentBook {
                 ", BreakEndTime='" + breakEndTime + '\'' +
                 ", StartTime='" + startTime + '\'' +
                 ", EndTime='" + endTime + '\'' +
+                ", isDeleted='" + isDeleted + '\'' +
                 //", Doctor='" + doctor +
                 '}';
     }

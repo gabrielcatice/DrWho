@@ -35,9 +35,12 @@ public class Doctor {
     @JoinColumn(name="appointment_book_id")
     private AppointmentBook appointmentBook;
 
+    @Column(columnDefinition = "default false")
+    private boolean isDeleted;
+
     public Doctor(){ }
 
-    public Doctor(String name, String cpf, String email, String phoneNumber, String address, String specialization, AppointmentBook appointmentBook) {
+    public Doctor(String name, String cpf, String email, String phoneNumber, String address, String specialization, AppointmentBook appointmentBook, boolean isDeleted) {
         this.name = name;
         this.cpf = cpf;
         this.email = email;
@@ -45,6 +48,7 @@ public class Doctor {
         this.address = address;
         this.specialization = specialization;
         this.appointmentBook = appointmentBook;
+        this.isDeleted = isDeleted;
     }
 
     //Getters and Setters
@@ -114,6 +118,13 @@ public class Doctor {
         this.appointmentBook = appointmentBook;
     }
 
+    public boolean isDeleted() {
+        return this.isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
     @Override
     public String toString(){
         return "Doctor{" +
@@ -125,6 +136,7 @@ public class Doctor {
                 ", address='" + address + '\'' +
                 ", specialization='" + specialization + '\'' +
                 ", appointmentBook='" + appointmentBook + '\'' +
+                ", isDeleted='" + isDeleted + '\'' +
                 '}';
     }
 

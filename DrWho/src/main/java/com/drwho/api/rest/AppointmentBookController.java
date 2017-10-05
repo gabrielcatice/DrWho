@@ -69,4 +69,20 @@ public class AppointmentBookController extends AbstractRestHandler {
         checkResourceFound(appointmentBook);
         return appointmentBook;
     }
+
+    //update an appointment book
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.PUT,
+            consumes = {"application/json", "application/xml"},
+            produces = {"application/json", "application/xml"})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Update a hotel resource.", notes = "You have to provide a valid hotel ID in the URL and in the payload. The ID attribute can not be updated.")
+    public void updateAppointmentBook(@ApiParam(value = "The ID of the existing hotel resource.", required = true)
+                             @PathVariable("id") Long id, @RequestBody AppointmentBook appointmentBook,
+                             HttpServletRequest request, HttpServletResponse response) {
+        checkResourceFound(this.appointmentBookService.getAppointmentBook(id));
+
+        //if (id != doctor.getId()) throw new DataFormatException("ID doesn't match!");
+        this.appointmentBookService.updateAppointmentBook(appointmentBook);
+    }
 }

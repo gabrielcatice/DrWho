@@ -70,6 +70,8 @@ public class DoctorController extends AbstractRestHandler {
         return doctor;
     }
 
+
+    //update a doctor
     @RequestMapping(value = "/{id}",
             method = RequestMethod.PUT,
             consumes = {"application/json", "application/xml"},

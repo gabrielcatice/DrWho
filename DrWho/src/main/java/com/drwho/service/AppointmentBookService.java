@@ -47,5 +47,7 @@ public class AppointmentBookService {
             counterService.increment("DrWho.AppointmentBookService.getAll.largePayload");
         }
         return pageOfAppointmentBooks;
+
+
     }
 }

@@ -25,10 +25,14 @@ public class AppointmentSchedule {
 
     private Date dateSchedule;
 
-    public AppointmentSchedule(Client client, Doctor doctor, Date dateSchedule) {
+    @Column(columnDefinition = "default false")
+    private boolean isDeleted;
+
+    public AppointmentSchedule(Client client, Doctor doctor, Date dateSchedule, boolean isDeleted) {
         this.client = client;
         this.doctor = doctor;
         this.dateSchedule = dateSchedule;
+        this.isDeleted = isDeleted;
     }
 
     public AppointmentSchedule(){
@@ -67,14 +71,22 @@ public class AppointmentSchedule {
     public void setDateSchedule(Date dateSchedule) {
         this.dateSchedule = dateSchedule;
     }
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
 
     @Override
     public String toString(){
         return "Appointment Schedule {" +
-                "id=" + id +
-                "client" + client + '\'' +
-                "doctor" + doctor + '\'' +
-                "dateSchedule" + dateSchedule + '\'' +
+                ", id=" + id +
+                ", client" + client + '\'' +
+                ", doctor" + doctor + '\'' +
+                ", dateSchedule" + dateSchedule + '\'' +
+                ", isDeleted='" + isDeleted + '\'' +
                 '}';
     }
 }

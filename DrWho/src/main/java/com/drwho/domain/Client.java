@@ -29,18 +29,23 @@ public class Client {
     @Column(nullable = false)
     private String address;
 
+    @Column(columnDefinition = "default false")
+    private boolean isDeleted;
+
+
+
     public Client(){
 
     }
 
-    public Client(String name, String cpf, String email, String phoneNumber, String address){
-        this.setName(name);
-        this.setCpf(cpf);
-        this.setEmail(email);
-        this.setPhoneNumber(phoneNumber);
-        this.setAddress(address);
+    public Client(String name, String cpf, String email, String phoneNumber, String address, boolean isDeleted) {
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.isDeleted = isDeleted;
     }
-
 
     public long getId() {
         return id;
@@ -90,6 +95,14 @@ public class Client {
         this.address = address;
     }
 
+    public boolean isDeleted() {
+        return this.isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
     @Override
     public  String toString(){
         return  "Client {" +
@@ -98,7 +111,8 @@ public class Client {
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address +
+                ", address='" + address + '\'' +
+                ", isDeleted='" + isDeleted + '\'' +
                 '}';
     }
 
